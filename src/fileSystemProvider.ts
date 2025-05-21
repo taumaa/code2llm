@@ -110,6 +110,7 @@ export class FileSystemProvider implements vscode.TreeDataProvider<FileSystemIte
       'yarn.lock',
       'yarn-lock.json',
       'env',
+      'venv',
       '__pycache__',
     ]);
 
