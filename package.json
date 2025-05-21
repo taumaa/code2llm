@@ -1,0 +1,90 @@
+{
+  "name": "code2llm",
+  "displayName": "code2llm",
+  "description": "Copy paste your codebase into LLM in 2 clicks",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.88.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:customFileTreeView"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taumaa/code2llm"
+  },
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "custom-copier-container",
+          "title": "File Copier",
+          "icon": "$(checklist)"
+        }
+      ]
+    },
+    "views": {
+      "custom-copier-container": [
+        {
+          "id": "customFileTreeView",
+          "name": "Fichiers à Copier",
+          "icon": "$(list-ordered)",
+          "contextualTitle": "Explorateur de Fichiers Personnalisé"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "customFileTreeView.toggleChecked",
+        "title": "Basculer la sélection du fichier"
+      },
+      {
+        "command": "customFileTreeView.copyCheckedFiles",
+        "title": "Copier les fichiers sélectionnés",
+        "icon": "$(clippy)"
+      },
+      {
+        "command": "customFileTreeView.refresh",
+        "title": "Rafraîchir la vue",
+        "icon": "$(refresh)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "customFileTreeView.copyCheckedFiles",
+          "when": "view == customFileTreeView",
+          "group": "navigation"
+        },
+        {
+          "command": "customFileTreeView.refresh",
+          "when": "view == customFileTreeView",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.88.0",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3"
+  }
+}
