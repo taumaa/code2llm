@@ -101,7 +101,17 @@ export class FileSystemProvider implements vscode.TreeDataProvider<FileSystemIte
 
     const parentUri = element ? element.resourceUri : this.workspaceRootUri;
     const items: FileSystemItem[] = [];
-    const ignoredNames = new Set(['node_modules', '.git', '.vscode']);
+    const ignoredNames = new Set([
+      'node_modules',
+      '.git',
+      '.vscode',
+      'package-lock.json',
+      'package.json',
+      'yarn.lock',
+      'yarn-lock.json',
+      'env',
+      '__pycache__',
+    ]);
 
     try {
       const entries = await vscode.workspace.fs.readDirectory(parentUri);
