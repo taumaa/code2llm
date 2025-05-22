@@ -57,7 +57,18 @@ export class FileSystemProvider implements vscode.TreeDataProvider<FileSystemIte
     const allFiles: vscode.Uri[] = [];
     const queue: vscode.Uri[] = [dirUri];
     const visitedDirs: Set<string> = new Set();
-    const ignoredNames = new Set(['node_modules', '.git', '.vscode']);
+    const ignoredNames = new Set([
+      'node_modules',
+      '.git',
+      '.vscode',
+      'package-lock.json',
+      'package.json',
+      'yarn.lock',
+      'yarn-lock.json',
+      'env',
+      'venv',
+      '__pycache__',
+    ]);
 
     while (queue.length > 0) {
       const currentDirUri = queue.shift()!;
